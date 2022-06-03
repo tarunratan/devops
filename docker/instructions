@@ -1,0 +1,59 @@
+docker ps-(list all docker images)
+docker images-(to show all docker images)
+docker run -p600:5432(assign a port 6000 to 5432 to run a docker container){ex:docker run --name nginx_base --rm -d -p 80:80 nginx:alpine}
+docker run -it (image){to get an interactive terminal on bash screen to run images such as ubuntu or postgress}
+
+docker start <nameof the container>(to start a container of docker)
+
+docker commit <container name> (to save the container data that has been edited or modified)
+docker tag empty_img_id with ngnix(to save nginx)
+docker commit nginx_base hello_world_nginx
+docker stop <img_name> (to stop image)
+docker rm <img_name>  (to remove image from docker)
+
+
+---------------------------------------------------
+  docker ps
+  docker pause <image id> #to pause the running container
+  docker stop <image id> #to stop container
+  
+  ------------------------------------------------------
+  docker compose up #to create a dockercompose file using Dockerfile requierements
+  
+  docker build . -t (userdefined name) #"." indicates the file that has to be built is located in cwd else we have to give the path
+  
+  
+*******copy from local machine to docker and viceversa**********
+ 
+ sudo docker run -it --name tarun ubuntu # start an ubuntu image as container with name as tarun
+ 
+ echo "hello mom">abc.txt  #to create a new file inside container
+ -------open a new terminal---------
+ sudo docker container ls #to get the container image id
+ 
+ sudo docker cp <container-id>:/filename ~Desktop/abc.txt #give the file to be copied from docker path and to be stored into local machine path
+ 
+ ---------to make a new file copy from local to docker----------
+ 
+ create a new file with text in it
+ 
+ sudo docker cp ~/Desktop/win.txt <container-id>:/win.txt (local path and container id and the path inside docker container)
+ 
+ docker exec it <container-id> sh #To run an terminal from an existing tunning docker container
+ 
+ ----------------make changes in docker container and make them reflect in local machine directory -----------------------
+ 
+ mkdir test #Create a directory to store data in local machine
+ 
+ sudo docker run -dit -P --name ubuntu-test -v ~/container-data:/data ubuntu
+
+sudo docker run -dit -P --name ubuntu-test -v ~/container-data:/data ubuntu {link the changes made in container to get reflected in local machine in container-data directory}
+
+#to create and check data 
+
+sudo docker attach <container-id>
+create a new file or folder inside data folder in docker ubuntu and see the changes get reflected in the local machine
+ 
+ 
+ 
+ 
