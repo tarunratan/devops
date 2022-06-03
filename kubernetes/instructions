@@ -1,0 +1,28 @@
+kubectl run ngnix --image=nginx #to create a pod with the base image of nginx
+kubectl get pods  # to get the running info of pods
+kubectl describe pod nginx # to describe the details of specific pod 
+kubectl vreate -f pod.yml
+
+#to get all containers for all the available pods 
+kubectl get pod -o="custom-columns=NAME:.metadata.name,INIT-CONTAINERS:.spec.initContainers[*].name,CONTAINERS:.spec.containers[*].name"
+
+
+replication controller
+replica set
+
+
+kubectl create -f deployment.yaml
+kubectl get deployments
+kubectl apply -f deployment.yaml
+kubectl set image deployment/myapp-deployment nginx=nginx:1.9.0
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+kubectl rollout undo deployment/myapp-deployment
+kubectl service <service-name> --url # to get service url 
+
+   -o yaml file gives the output of the yaml file created 
+   
+   --dry-run creates a new resource
+   --dry-run=client will tell whether the resource can be created or not without creating it
+   
+   
