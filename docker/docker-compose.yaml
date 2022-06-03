@@ -1,0 +1,7 @@
+Docker compose containes mainly three fields
+FROM <image name>  # it inidcates the image that needs to be pulled from the docker repository
+RUN <cmd>  #indicates the default commands that needs to be excecuted while creating the dockerbuild file
+CMD #the commands that are excecuted when an docker-container is run using its image id ex:CMD ["echo","hello world"]
+
+
+the .yaml or yml extension gives the docker file to get automated 
