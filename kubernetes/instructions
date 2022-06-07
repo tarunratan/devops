@@ -26,3 +26,158 @@ kubectl service <service-name> --url # to get service url
    --dry-run=client will tell whether the resource can be created or not without creating it
    
    
+----------------------
+imperative way of kubernetes
+-------------------------------------------
+#to directl run a pod & deployment from ctl
+
+kubectl run nginx --image=nginx   
+kubectl create deployment --image=nginx nginx 
+
+#we get a pod yaml file without resouce creation
+
+kubectl run nginx --image=nginx --dry-run=client -o yaml 
+
+
+Generate Deployment YAML file (-o yaml). Don’t create it(–dry-run)
+
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+	Generate Deployment with 4 Replicas
+
+kubectl create deployment nginx --image=nginx --replicas=4
+
+Another way to do this is to save the YAML definition to a file and modify
+
+kubectl create deployment nginx --image=nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+	service----------
+	kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml
+	
+taint and toleration
+taint are set to nodes so that no others pods can enter into it
+toleration is set to pods so that pod can enter into taint
+
+kubectl taint node node-name key=value:taint-effect
+kubectl taint nodes node1 app=blue:NoSchedule
+
+ex:pod-deination.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+	name: my-app
+spec:
+	containers:
+	  - name:nginx-container
+	    iamge: nginx
+	tolerations:
+	 - key: "app"
+	   operator: "Equal"
+	   value: "blue"
+	   effect: "NoSchedule"
+	   
+cmds:
+kubectl describe node kubemaster | grep Taint # to check the taint of the node given
+kubectl describe node nodename |grep Taint # to check the nodes taint info
+
+kubectl taint nodes nodename node-role.kubernetes.io/master:NoSchedule-
+# to untaint a node 
+node selectors:
+	they are used to set a specific name or label for nodes such that all the pods that can be grouped into nodes on the basis of node selector
+
+node affinity:
+
+kubectl label node nod01 color=blue #To set color of node to blue
+
+kubectl create deployment blue --image=nginx --replicas=3
+#To get 3 replicas created using ctl without yaml file
+
+
+kubernetes cpu node resource requirement and limit
+
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+spec:
+  limits:
+  - default:
+      cpu: 1
+    defaultRequest:
+      cpu: 0.5
+    type: Container
+    
+    
+view logs in kubernetes
+kubectl logd -f podname
+
+kubectl drain node01 --ignore-daemonsets #to make node01 out of maintenance
+kubectl uncordon node01 # to make pods available for node01	
+kubectl cordon node01 #to cordon node01 app back 
+watch kubectl get nodes #To get status of nodes evry 2seconds
+
+CLUSTER upgrade is mainly depended on cordon and uncordon commands that we usually 
+
+
+ETCDCTL_API=3 etcdctl \ 
+          snapshot save snapshot.db
+          
+ ETCDCTL_API=3 etcdctl \ 
+           snapshot status snapshot.db
+           
+           
+ --------security-------
+ 
+ certificates with public key are named as .crt or .pem
+  certificates with private key are named as .pem or .-key.pem
+  
+  kubectl config 
+  
+  base64---
+  echo "text" | base64 --encode or decode
+  
+  curl http://localhost:6443 -k # to see localhost running at  
+  kubectl proxy
+  
+  kubectl auth can-i create deployments
+  kubectl auth can-i delete nodes   
+   kubectl auth can-i delete nodes   --as -devuser
+   
+    kubectl get clusterroles --no-headers | wc -l # to list no of available clusters
+    
+     kubectl get clusterrolebindings --no-headers | wc -l     # to list no of rolebindings in the cluster
+     
+   ---service accounts-----
+kubectl create serviceaccount dashboard-sa
+kubectl get serviceaccount # to get available service accounts
+kubectl describe secret dashboard-sa-token-kbbdm
+
+------images-----
+docker login private-registery.io
+docker run private-registery.io/apps/my-image
+
+docker security standards 
+----
+from ubuntu
+user 1000
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
