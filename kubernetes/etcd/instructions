@@ -1,0 +1,12 @@
+./etcd
+./etcdctl set key1 value1
+./etcdctl get key1
+
+kubectl get pods -n kube-system
+kubectl exec etcd-master -n kube-system etcdctl get / --prefix -keys-only
+kube api-server
+kube controll manager
+kube scheduler
+kubelet:
+kube proxy: 
+pods
