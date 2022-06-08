@@ -227,7 +227,25 @@ spec:
         claimName: myclaim
         
         
+            -----network---
+    ip link # to list and modify interfaces on the host
+    ip addr # to see the ip's assigned to those interfaces    
         
+     ip addr add 192.6.1/24 dev eth0 # to set ip on the route
+     
+     ip route # to see routing table
+     
+     cat /proc/sys/net/ipv4/ip_forward # to see routing status
+     
+     ping ip or pind db
+     
+   ip netns exec blue ping 192.**.**.*
+   # to see network traffic
+   docker network ls
+   ip netnskubectl get service -n kube-system # to get ip of cluster
+     
+     
+     
 
 
 
