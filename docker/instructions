@@ -9,8 +9,14 @@ docker commit <container name> (to save the container data that has been edited 
 docker tag empty_img_id with ngnix(to save nginx)
 docker commit nginx_base hello_world_nginx
 docker stop <img_name> (to stop image)
-docker rm <img_name>  (to remove image from docker)
+docker rm <container_name>  (to remove container from docker)
+docker image prune (to remove all unused images )
 
+docker run -p "port to expose to outside <8080>:port from which we recieve<8080>" <img-name>
+
+**********Deleting Docker Images *********
+docker image rm (image name or img id) 
+we can also use tags such as --force || -f to force remove 
 
 ---------------------------------------------------
   docker ps
