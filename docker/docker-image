@@ -1,0 +1,43 @@
+Docker-compose. YAML file 
+
+The docker-compose.YAML file consists of mainly three fields
+
+{
+
+FROM --Indicates the sources from which we are importing the docker image
+
+RUN --This command gets executed while we are building the docker build to add all the dependencies required by the application we are working with.
+
+CMD -- These are the commands that get executed after the docker file is built and whenever we run the docker image file 
+
+}
+
+ 
+
+Best practices while writing docker-images:
+
+Always use the official image from the docker hub repository 
+
+Mention the version of the file that we are going to import rather than: the latest tag so that we won't have dependencies version issues
+
+Never export any ports that weren't used or not needed to have fewer vulnerability issues 
+
+Use a .dockerignore file to remove or exclude all the unnecessary files into docker every time while doing the update 
+
+ 
+
+  Always make layers so that the layers that weren't changed at first because docker uses caching and stores all the layers in the local memory and if a layer is changed then all the layers above the changed layers become void and not usable so sorting layers is must while dockerfile creation
+
+ 
+
+Use multi-stage building whenever there is a scope to create the whole application from a dockerfile and then copy the file into another file and with the fewer dependencies run the latest docker image file
+
+Using of docker scan to find out the vulnerabilities of the docker image 
+
+Use environment variables in another file and import rather than hard-coding the username and passwords 
+
+create a non-root user and run everything inside the new user and group so that the implementations we do won't be in the root user to have a fewer vulnerability issues
+
+Use of docker secret service to protect the fields such as ssh keys or authentication passwords because they shouldn't be stored as plain text as they are harm to security 
+
+ 
