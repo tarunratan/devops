@@ -1,0 +1,17 @@
+ALL THE COMMANDS THAT ARE NEEDED ON TERMINAL
+ To create  a new user from the terminal we can use the command
+ sudo useradd <username>
+           ex: sudo useradd tarun
+
+To enter into that user we use the command  
+ sudo su <username>
+            ex: Sudo su Tarun
+After the creation of the user, we need to permit user in order to add anything to the user
+For that, we enter a command
+sudo usermod -aG sudo <username>
+          ex: sudo usermod -aG Tarun
+
+we can check the permissions of the user by the command
+groups <username>
+         ex: groups tarun
+         output=> tarun : tarun sudo
