@@ -1,0 +1,22 @@
+Commands mostly used in docker practices
+
+docker ps ----to view containers
+docker build -t <img-name> .  ------- -t is to add a image name tag to docker image built
+docker-compose up -d  ----to create or run a docker container using the existing yaml file
+docker-compose down   ---to stop the existing docker container
+
+
+
+------------------------------------------------------
+DNS names will be available in frontend machine servers/nameof the project/default filepath
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+TO start or stop kong service we need to delete and apply the file in kubernetes again
+
